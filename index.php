@@ -157,7 +157,7 @@
                             <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem2-it" name="mensagem2-it" rows="4" required placeholder="Explique por que você se opõe ao Decreto-Lei Tajani..." readonly>
                                 <?php
                                 // Lê o conteúdo do arquivo
-                                $mensagem_it = file_get_contents('mensagem_it.txt');
+                                $mensagem_it = file_get_contents('mensagem_it.html');
                                 // Remove as tags HTML e exibe apenas o texto
                                 echo htmlspecialchars(strip_tags($mensagem_it), ENT_QUOTES, 'UTF-8');
                                 ?>

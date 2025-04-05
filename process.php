@@ -1,7 +1,7 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 require 'vendor/autoload.php';
 
@@ -32,57 +32,73 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Nenhum e-mail válido encontrado na planilha.");
     }
 
-    // Configuração do PHPMailer
-    $mail = new PHPMailer(true);
-    try {
-        // Configurações do servidor SMTP
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; 
-        $mail->SMTPAuth = true;
-        $mail->Username = 'siamo.italiani.it.manifest@gmail.com'; // Nome de usuário SMTP 
-        $mail->Password = 'brployiwrdzrcgmp'; // Senha SMTP
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-        $mail->CharSet = 'UTF-8';
+    // Criar cliente Guzzle para acessar a API Resend
+    $client = new Client([
+        'base_uri' => 'https://api.resend.com',
+        'headers' => [
+            'Authorization' => 'Bearer re_C2jhWZJq_wFkULFnwBwah4q9CaaQRFe5w', // Substitua com sua chave API do Resend
+            'Content-Type' => 'application/json'
+        ]
+    ]);
 
-        // Remetente
-        $mail->setFrom($email, $nome);
-        $mail->addReplyTo($email, $nome);
+    // Carrega template em italiano e substitui placeholders
+    $mensagem_it = file_get_contents('mensagem_it.html');
+    $mensagem_it = str_replace(
+        ['[[Nome]]', '[[Email]]', '[[nacionalidade]]', '[[Data]]'],
+        [$nome, $email, strtolower($pais), date('d/m/Y')],
+        $mensagem_it
+    );
 
-        // Assunto FIXO em italiano
-        $mail->Subject = 'Manifestazione collettiva contro il Decreto-Legge Tajani';
-
-        // Carrega template em italiano e substitui placeholders
-        $mensagem_it = file_get_contents('mensagem_it.html');
-        $mensagem_it = str_replace(
-            ['[[Nome]]', '[[Email]]', '[[nacionalidade]]', '[[Data]]'],
-            [$nome, $email, strtolower($pais), date('d/m/Y')],
-            $mensagem_it
-        );
-        
-        $mail->isHTML(true);
-        $mail->Body = $mensagem_it;
-        $mail->AltBody = strip_tags($mensagem_it);
-
-        // Envia para todos os e-mails da lista
-        foreach ($emails as $destinatario) {
-            try {
-                $mail->clearAddresses();
-                $mail->addAddress($destinatario);
-                $mail->send();
-                echo "E-mail enviado para: $destinatario<br>";
-            } catch (Exception $e) {
-                echo "Falha no envio para $destinatario: " . $mail->ErrorInfo . "<br>";
+    // Assunto FIXO em italiano
+    $subject = 'Manifestazione collettiva contro il Decreto-Legge Tajani';
+    
+    // Envia para todos os e-mails da lista
+    $successCount = 0;
+    $failCount = 0;
+    
+    foreach ($emails as $destinatario) {
+        try {
+            $emailData = [
+                'from' => 'Manifestação Cidadania <onboarding@resend.dev>', // Para testes iniciais
+                'reply_to' => $email,
+                'to' => $destinatario,
+                'subject' => $subject,
+                'html' => $mensagem_it
+            ];
+            
+            $response = $client->post('/emails', [
+                'json' => $emailData
+            ]);
+            
+            $statusCode = $response->getStatusCode();
+            $responseData = json_decode($response->getBody()->getContents());
+            
+            if ($statusCode == 200 && isset($responseData->id)) {
+                echo "E-mail enviado para: $destinatario (ID: {$responseData->id})<br>";
+                $successCount++;
+            } else {
+                echo "Falha no envio para $destinatario: código de status $statusCode<br>";
+                $failCount++;
             }
+        } catch (RequestException $e) {
+            $errorMessage = $e->hasResponse() ? $e->getResponse()->getBody()->getContents() : $e->getMessage();
+            echo "Falha no envio para $destinatario: " . $errorMessage . "<br>";
+            $failCount++;
+        } catch (Exception $e) {
+            echo "Erro no envio para $destinatario: " . $e->getMessage() . "<br>";
+            $failCount++;
         }
-
-        echo "<h3>Todos os e-mails foram processados!</h3>";
-
-    } catch (Exception $e) {
-        die("Erro no envio: {$mail->ErrorInfo}");
     }
+
+    echo "<h3>Processamento concluído!</h3>";
+    echo "<p>E-mails enviados com sucesso: $successCount</p>";
+    echo "<p>Falhas no envio: $failCount</p>";
+    
+    if ($failCount > 0) {
+        echo "<p>Verifique as mensagens de erro acima para mais detalhes.</p>";
+    }
+
 } else {
     header("Location: index.php");
     exit();
 }
-?>
