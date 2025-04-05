@@ -237,7 +237,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="mensagem2-en" class="form-label">Italian</label>
-                            <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem2-it" name="mensagem2-it" rows="4" required readonly><?php
+                            <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem2-it-en" name="mensagem2-it-en" rows="4" required readonly><?php
                                                                                                                                                                     $mensagem_it = file_get_contents('mensagem_it.html');
                                                                                                                                                                     echo htmlspecialchars(strip_tags($mensagem_it), ENT_QUOTES, 'UTF-8');
                                                                                                                                                                     ?></textarea>
@@ -335,7 +335,7 @@
                 // Par português-italiano
                 ['mensagem1', 'mensagem2-it'],
                 // Par inglês-italiano 
-                ['mensagem1-en', 'mensagem2-it']
+                ['mensagem1-en', 'mensagem2-it-en']
             ];
 
             // Flag para prevenir loop infinito
