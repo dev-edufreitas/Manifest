@@ -230,7 +230,7 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="mensagem1-en" class="form-label">English</label>
-                            <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem1-en" name="mensagem1" rows="4" required readonly><?php
+                            <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem1-en" name="mensagem1-en" rows="4" required readonly><?php
                                                                                                                                                                 $mensagem_en = file_get_contents('mensagem_en.html');
                                                                                                                                                                 echo htmlspecialchars(strip_tags($mensagem_en), ENT_QUOTES, 'UTF-8');
                                                                                                                                                                 ?></textarea>
@@ -328,6 +328,69 @@
             it: `<?php echo htmlspecialchars(strip_tags(file_get_contents('mensagem_it.html')), ENT_QUOTES, 'UTF-8'); ?>`
         };
 
+        // Função para sincronizar o scroll de dois textareas
+        function setupScrollSync() {
+            // Pares de textareas para sincronizar (ids)
+            const textareaPairs = [
+                // Par português-italiano
+                ['mensagem1', 'mensagem2-it'],
+                // Par inglês-italiano 
+                ['mensagem1-en', 'mensagem2-it']
+            ];
+
+            // Flag para prevenir loop infinito
+            let isScrolling = false;
+
+            // Para cada par, configuramos os listeners
+            textareaPairs.forEach(pair => {
+                const textarea1 = document.getElementById(pair[0]);
+                const textarea2 = document.getElementById(pair[1]);
+
+                // Se os dois elementos existem
+                if (textarea1 && textarea2) {
+                    // Adicionar event listener ao primeiro textarea
+                    textarea1.addEventListener('scroll', function() {
+                        // Se já estamos rolando, não faça nada para evitar loop
+                        if (isScrolling) return;
+
+                        // Definir flag para prevenir loop
+                        isScrolling = true;
+
+                        // Calcular a porcentagem de rolagem
+                        const scrollPercentage = this.scrollTop / (this.scrollHeight - this.clientHeight);
+
+                        // Aplicar a mesma porcentagem ao segundo textarea
+                        textarea2.scrollTop = scrollPercentage * (textarea2.scrollHeight - textarea2.clientHeight);
+
+                        // Resetar a flag depois de um breve delay
+                        setTimeout(() => {
+                            isScrolling = false;
+                        }, 10);
+                    });
+
+                    // Adicionar event listener ao segundo textarea
+                    textarea2.addEventListener('scroll', function() {
+                        // Se já estamos rolando, não faça nada para evitar loop
+                        if (isScrolling) return;
+
+                        // Definir flag para prevenir loop
+                        isScrolling = true;
+
+                        // Calcular a porcentagem de rolagem
+                        const scrollPercentage = this.scrollTop / (this.scrollHeight - this.clientHeight);
+
+                        // Aplicar a mesma porcentagem ao primeiro textarea
+                        textarea1.scrollTop = scrollPercentage * (textarea1.scrollHeight - textarea1.clientHeight);
+
+                        // Resetar a flag depois de um breve delay
+                        setTimeout(() => {
+                            isScrolling = false;
+                        }, 10);
+                    });
+                }
+            });
+        }
+
         // Função para atualizar todas as mensagens visíveis
         function updateAllMessages() {
             // Obtém o idioma ativo
@@ -396,6 +459,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             setupFormListeners();
             updateAllMessages();
+            setupScrollSync();
 
             document.querySelectorAll('.dropdown-item').forEach(item => {
                 item.addEventListener('click', function(e) {
