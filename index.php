@@ -34,6 +34,10 @@
 
         /* Estilos responsivos para mobile */
         @media (max-width: 767px) {
+            header.py-4 {
+                padding-top: 60px !important;
+            }
+
             .language-selector {
                 top: 10px;
                 right: 10px;
@@ -118,7 +122,7 @@
                 <h4 class="alert-heading">Manifestação coletiva contra o Decreto-Lei Tajani</h4>
                 <p>Este site é um espaço para <strong>descendentes de italianos</strong> que residem no <strong>Brasil, Argentina, Canadá, França, Estados Unidos e outros países </strong>participarem de uma <strong>manifestação coletiva</strong> contra o <strong>Decreto-Lei Tajani</strong>, que altera os critérios para a concessão de cidadania italiana.</p>
                 <p>O referido decreto propõe mudanças significativas no sistema de cidadania <strong>jus sanguinis</strong>, limitando-o a <strong>filhos e netos de italianos nascidos na Itália</strong>, excluindo <strong>milhões de descendentes de italianos no exterior</strong>. Essa alteração ignora a <strong>rica história de emigração italiana</strong> e a <strong>contribuição contínua de suas comunidades no mundo todo</strong>. Além disso, a introdução do <strong>jus italiae</strong>, que concede cidadania a estrangeiros nascidos na Itália após <strong>10 anos de residência e conclusão do ciclo escolar</strong>, enquanto restringe o <strong>jus sanguinis</strong>, levanta preocupações sobre a definição de <strong>identidade nacional</strong> e a inclusão de <strong>milhões de ítalo-descendentes</strong>.</p>
-                <p>Ao preencher seu <strong>nome</strong> e <strong>e-mail</strong> nos campos abaixo, sua mensagem será <strong>personalizada</strong> e enviada aos <strong>409 parlamentares italianos</strong>, solicitando a reconsideração deste decreto que ameaça desfazer <strong>gerações de história e cultura compartilhada</strong>. Sua participação é crucial para garantir que a <strong>diáspora italiana</strong> continue a ser reconhecida e valorizada.</p>
+                <p>Ao preencher seu <strong>nome</strong> e <strong>e-mail</strong> nos campos abaixo, sua mensagem será <strong>personalizada</strong> e enviada aos <strong>401 parlamentares italianos</strong>, solicitando a reconsideração deste decreto que ameaça desfazer <strong>gerações de história e cultura compartilhada</strong>. Sua participação é crucial para garantir que a <strong>diáspora italiana</strong> continue a ser reconhecida e valorizada.</p>
                 <p>Preencha os campos abaixo e <strong>junte-se a nós nesta luta pela preservação de nossa história</strong>!</p>
             </div>
 
@@ -166,7 +170,7 @@
                     </div>
                     <input type="hidden" name="language" value="pt">
                     <div class="alert alert-warning mt-3">
-                        <i class="fas fa-info-circle"></i> Sua mensagem será enviada aos 409 parlamentares italianos.
+                        <i class="fas fa-info-circle"></i> Sua mensagem será enviada aos 401 parlamentares italianos.
                     </div>
                     <button type="submit" class="btn btn-danger w-100">Enviar</button>
                 </form>
@@ -194,7 +198,7 @@
                 <h4 class="alert-heading">Collective manifesto against the Tajani Decree-Law</h4>
                 <p>This site serves as a platform for citizens of <strong>Italian descent</strong> residing in <strong>Brazil, Argentina, Canada, France, United States, and other countries</strong> to speak out against the <strong>collective manifesto against the Tajani Decree-Law</strong>, which alters the criteria for granting Italian citizenship.</p>
                 <p>The decree proposes significant changes to the <strong>jus sanguinis</strong> citizenship system, limiting it to <strong>children and grandchildren of Italians born in Italy</strong>, excluding <strong>millions of Italian descendants abroad</strong>. This change ignores the <strong>rich history of Italian emigration</strong> and the <strong>continuous contribution of its communities worldwide</strong>. Furthermore, the introduction of <strong>jus italiae</strong>, which grants citizenship to foreigners born in Italy after <strong>10 years of residence and completion of schooling</strong>, while restricting <strong>jus sanguinis</strong>, raises concerns about the definition of <strong>national identity</strong> and the inclusion of <strong>millions of Italian descendants</strong>.</p>
-                <p>By filling in your <strong>name</strong> and <strong>email</strong> in the fields below, your message will be <strong>personalized</strong> and sent to <strong>409 Italian parliamentarians</strong>, requesting reconsideration of this decree that threatens to undo <strong>generations of shared history and culture</strong>. Your participation is crucial to ensure that the <strong>Italian diaspora</strong> continues to be recognized and valued.</p>
+                <p>By filling in your <strong>name</strong> and <strong>email</strong> in the fields below, your message will be <strong>personalized</strong> and sent to <strong>401 Italian parliamentarians</strong>, requesting reconsideration of this decree that threatens to undo <strong>generations of shared history and culture</strong>. Your participation is crucial to ensure that the <strong>Italian diaspora</strong> continues to be recognized and valued.</p>
                 <p>Fill in the fields below and <strong>join us in this fight to preserve our history</strong>!</p>
             </div>
 
@@ -234,14 +238,14 @@
                         <div class="col-md-6">
                             <label for="mensagem2-en" class="form-label">Italian</label>
                             <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem2-it" name="mensagem2-it" rows="4" required readonly><?php
-                                                                                                                                                                $mensagem_it = file_get_contents('mensagem_it.html');
-                                                                                                                                                                echo htmlspecialchars(strip_tags($mensagem_it), ENT_QUOTES, 'UTF-8');
-                                                                                                                                                                ?></textarea>
+                                                                                                                                                                    $mensagem_it = file_get_contents('mensagem_it.html');
+                                                                                                                                                                    echo htmlspecialchars(strip_tags($mensagem_it), ENT_QUOTES, 'UTF-8');
+                                                                                                                                                                    ?></textarea>
                         </div>
                     </div>
                     <input type="hidden" name="language" value="en">
                     <div class="alert alert-warning mt-3">
-                        <i class="fas fa-info-circle"></i> Your message will be sent to the 409 Italian parliamentarians.
+                        <i class="fas fa-info-circle"></i> Your message will be sent to the 401 Italian parliamentarians.
                     </div>
                     <button type="submit" class="btn btn-danger w-100">Submit</button>
                 </form>
@@ -269,7 +273,7 @@
                 <h4 class="alert-heading">Manifestazione collettiva contro il Decreto-Legge Tajani</h4>
                 <p>Questo sito funge da piattaforma per i cittadini <strong>di discendenza italiana</strong> residenti in <strong>Brasile, Argentina, Canada, Francia, Stati Uniti e altri paesi</strong> per esprimersi contro il <strong>Decreto-Legge proposto dal Ministro Antonio Tajani</strong>, che modifica i criteri per la concessione della cittadinanza italiana.</p>
                 <p>Il decreto propone cambiamenti significativi al sistema di cittadinanza <strong>jus sanguinis</strong>, limitandolo a <strong>figli e nipoti di italiani nati in Italia</strong>, escludendo <strong>milioni di discendenti italiani all'estero</strong>. Questo cambiamento ignora la <strong>ricca storia dell'emigrazione italiana</strong> e il <strong>continuo contributo delle sue comunità in tutto il mondo</strong>. Inoltre, l'introduzione dello <strong>jus italiae</strong>, che concede la cittadinanza agli stranieri nati in Italia dopo <strong>10 anni di residenza e completamento del ciclo scolastico</strong>, mentre restringe lo <strong>jus sanguinis</strong>, solleva preoccupazioni sulla definizione di <strong>identità nazionale</strong> e sull'inclusione di <strong>milioni di italo-discendenti</strong>.</p>
-                <p>Compilando il tuo <strong>nome</strong> e <strong>email</strong> nei campi sottostanti, il tuo messaggio sarà <strong>personalizzato</strong> e inviato ai <strong>409 parlamentari italiani</strong>, richiedendo la riconsiderazione di questo decreto che minaccia di annullare <strong>generazioni di storia e cultura condivisa</strong>. La tua partecipazione è fondamentale per garantire che la <strong>diaspora italiana</strong> continui ad essere riconosciuta e valorizzata.</p>
+                <p>Compilando il tuo <strong>nome</strong> e <strong>email</strong> nei campi sottostanti, il tuo messaggio sarà <strong>personalizzato</strong> e inviato ai <strong>401 parlamentari italiani</strong>, richiedendo la riconsiderazione di questo decreto che minaccia di annullare <strong>generazioni di storia e cultura condivisa</strong>. La tua partecipazione è fondamentale per garantire che la <strong>diaspora italiana</strong> continui ad essere riconosciuta e valorizzata.</p>
                 <p>Compila i campi sottostanti e <strong>unisciti a noi in questa lotta per preservare la nostra storia</strong>!</p>
             </div>
 
@@ -307,7 +311,7 @@
                     </div>
                     <input type="hidden" name="language" value="it">
                     <div class="alert alert-warning mt-3">
-                        <i class="fas fa-info-circle"></i> Il tuo messaggio sarà inviato ai 409 parlamentari italiani.
+                        <i class="fas fa-info-circle"></i> Il tuo messaggio sarà inviato ai 401 parlamentari italiani.
                     </div>
                     <button type="submit" class="btn btn-danger w-100">Invia</button>
                 </form>
