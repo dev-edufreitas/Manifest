@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manifestação ao Decreto-Lei Tajani</title>
+    <link rel="icon" href="favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -100,7 +101,7 @@
     <!-- Conteúdo em Português -->
     <div id="content-pt" class="content-section">
         <header class="py-4 bg-danger text-white text-center">
-            <h1>Manifestação Coletiva contra ao Decreto-Lei Tajani</h1>
+            <h1>Manifestação coletiva contra ao Decreto-Lei Tajani</h1>
             <p>28 de março de 2025</p>
             <div class="d-flex justify-content-center">
                 <img src="https://flagcdn.com/w320/it.png" alt="Itália" class="m-2" width="60">
@@ -114,7 +115,7 @@
 
         <div class="container">
             <div class="alert alert-info mt-4" role="alert">
-                <h4 class="alert-heading">Manifestação Coletiva contra o Decreto-Lei Tajani</h4>
+                <h4 class="alert-heading">Manifestação coletiva contra o Decreto-Lei Tajani</h4>
                 <p>Este site é um espaço para <strong>descendentes de italianos</strong> que residem no <strong>Brasil, Argentina, Canadá, França, Estados Unidos e outros países </strong>participarem de uma <strong>manifestação coletiva</strong> contra o <strong>Decreto-Lei Tajani</strong>, que altera os critérios para a concessão de cidadania italiana.</p>
                 <p>O referido decreto propõe mudanças significativas no sistema de cidadania <strong>jus sanguinis</strong>, limitando-o a <strong>filhos e netos de italianos nascidos na Itália</strong>, excluindo <strong>milhões de descendentes de italianos no exterior</strong>. Essa alteração ignora a <strong>rica história de emigração italiana</strong> e a <strong>contribuição contínua de suas comunidades no mundo todo</strong>. Além disso, a introdução do <strong>jus italiae</strong>, que concede cidadania a estrangeiros nascidos na Itália após <strong>10 anos de residência e conclusão do ciclo escolar</strong>, enquanto restringe o <strong>jus sanguinis</strong>, levanta preocupações sobre a definição de <strong>identidade nacional</strong> e a inclusão de <strong>milhões de ítalo-descendentes</strong>.</p>
                 <p>Ao preencher seu <strong>nome</strong> e <strong>e-mail</strong> nos campos abaixo, sua mensagem será <strong>personalizada</strong> e enviada aos <strong>409 parlamentares italianos</strong>, solicitando a reconsideração deste decreto que ameaça desfazer <strong>gerações de história e cultura compartilhada</strong>. Sua participação é crucial para garantir que a <strong>diáspora italiana</strong> continue a ser reconhecida e valorizada.</p>
@@ -122,7 +123,7 @@
             </div>
 
             <div class="form-container mx-auto my-5 p-4 bg-white shadow rounded">
-                <h2>Manifestação Coletiva contra o Decreto-Lei Tajani</h2>
+                <h2>Manifestação coletiva contra o Decreto-Lei Tajani</h2>
                 <form action="process.php" method="POST">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
@@ -153,7 +154,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="mensagem2" class="form-label">Italiano</label>
-                            <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem2" name="mensagem2" rows="4" required placeholder="Explique por que você se opõe ao Decreto-Lei Tajani..." readonly>
+                            <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem2-it" name="mensagem2-it" rows="4" required placeholder="Explique por que você se opõe ao Decreto-Lei Tajani..." readonly>
                                 <?php
                                 // Lê o conteúdo do arquivo
                                 $mensagem_it = file_get_contents('mensagem_it.txt');
@@ -176,7 +177,7 @@
     <!-- English Content -->
     <div id="content-en" class="content-section hidden">
         <header class="py-4 bg-danger text-white text-center">
-            <h1>Collective Manifesto against the Tajani Decree-Law</h1>
+            <h1>Collective manifesto against the Tajani Decree-Law</h1>
             <p>March 28, 2025</p>
             <div class="d-flex justify-content-center">
                 <img src="https://flagcdn.com/w320/it.png" alt="Italy" class="m-2" width="60">
@@ -190,7 +191,7 @@
 
         <div class="container">
             <div class="alert alert-info mt-4" role="alert">
-                <h4 class="alert-heading">Collective Manifesto against the Tajani Decree-Law</h4>
+                <h4 class="alert-heading">Collective manifesto against the Tajani Decree-Law</h4>
                 <p>This site serves as a platform for citizens of <strong>Italian descent</strong> residing in <strong>Brazil, Argentina, Canada, France, United States, and other countries</strong> to speak out against the <strong>collective manifesto against the Tajani Decree-Law</strong>, which alters the criteria for granting Italian citizenship.</p>
                 <p>The decree proposes significant changes to the <strong>jus sanguinis</strong> citizenship system, limiting it to <strong>children and grandchildren of Italians born in Italy</strong>, excluding <strong>millions of Italian descendants abroad</strong>. This change ignores the <strong>rich history of Italian emigration</strong> and the <strong>continuous contribution of its communities worldwide</strong>. Furthermore, the introduction of <strong>jus italiae</strong>, which grants citizenship to foreigners born in Italy after <strong>10 years of residence and completion of schooling</strong>, while restricting <strong>jus sanguinis</strong>, raises concerns about the definition of <strong>national identity</strong> and the inclusion of <strong>millions of Italian descendants</strong>.</p>
                 <p>By filling in your <strong>name</strong> and <strong>email</strong> in the fields below, your message will be <strong>personalized</strong> and sent to <strong>409 Italian parliamentarians</strong>, requesting reconsideration of this decree that threatens to undo <strong>generations of shared history and culture</strong>. Your participation is crucial to ensure that the <strong>Italian diaspora</strong> continues to be recognized and valued.</p>
@@ -198,7 +199,7 @@
             </div>
 
             <div class="form-container mx-auto my-5 p-4 bg-white shadow rounded">
-                <h2>Collective Manifesto against the Tajani Decree-Law</h2>
+                <h2>Collective manifesto against the Tajani Decree-Law</h2>
                 <form action="process.php" method="POST">
                     <div class="mb-3">
                         <label for="nome-en" class="form-label">Name</label>
@@ -232,7 +233,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="mensagem2-en" class="form-label">Italian</label>
-                            <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem2-en" name="mensagem2" rows="4" required readonly><?php
+                            <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem2-it" name="mensagem2-it" rows="4" required readonly><?php
                                                                                                                                                                 $mensagem_it = file_get_contents('mensagem_it.html');
                                                                                                                                                                 echo htmlspecialchars(strip_tags($mensagem_it), ENT_QUOTES, 'UTF-8');
                                                                                                                                                                 ?></textarea>
@@ -251,7 +252,7 @@
     <!-- Contenuto Italiano -->
     <div id="content-it" class="content-section hidden">
         <header class="py-4 bg-danger text-white text-center">
-            <h1>Manifestazione Collettiva contro il Decreto-Legge Tajani</h1>
+            <h1>Manifestazione collettiva contro il Decreto-Legge Tajani</h1>
             <p>28 marzo 2025</p>
             <div class="d-flex justify-content-center">
                 <img src="https://flagcdn.com/w320/it.png" alt="Italia" class="m-2" width="60">
@@ -265,7 +266,7 @@
 
         <div class="container">
             <div class="alert alert-info mt-4" role="alert">
-                <h4 class="alert-heading">Manifestazione contro il Decreto-Legge Tajani</h4>
+                <h4 class="alert-heading">Manifestazione collettiva contro il Decreto-Legge Tajani</h4>
                 <p>Questo sito funge da piattaforma per i cittadini <strong>di discendenza italiana</strong> residenti in <strong>Brasile, Argentina, Canada, Francia, Stati Uniti e altri paesi</strong> per esprimersi contro il <strong>Decreto-Legge proposto dal Ministro Antonio Tajani</strong>, che modifica i criteri per la concessione della cittadinanza italiana.</p>
                 <p>Il decreto propone cambiamenti significativi al sistema di cittadinanza <strong>jus sanguinis</strong>, limitandolo a <strong>figli e nipoti di italiani nati in Italia</strong>, escludendo <strong>milioni di discendenti italiani all'estero</strong>. Questo cambiamento ignora la <strong>ricca storia dell'emigrazione italiana</strong> e il <strong>continuo contributo delle sue comunità in tutto il mondo</strong>. Inoltre, l'introduzione dello <strong>jus italiae</strong>, che concede la cittadinanza agli stranieri nati in Italia dopo <strong>10 anni di residenza e completamento del ciclo scolastico</strong>, mentre restringe lo <strong>jus sanguinis</strong>, solleva preoccupazioni sulla definizione di <strong>identità nazionale</strong> e sull'inclusione di <strong>milioni di italo-discendenti</strong>.</p>
                 <p>Compilando il tuo <strong>nome</strong> e <strong>email</strong> nei campi sottostanti, il tuo messaggio sarà <strong>personalizzato</strong> e inviato ai <strong>409 parlamentari italiani</strong>, richiedendo la riconsiderazione di questo decreto che minaccia di annullare <strong>generazioni di storia e cultura condivisa</strong>. La tua partecipazione è fondamentale per garantire che la <strong>diaspora italiana</strong> continui ad essere riconosciuta e valorizzata.</p>
@@ -273,7 +274,7 @@
             </div>
 
             <div class="form-container mx-auto my-5 p-4 bg-white shadow rounded">
-                <h2>Manifestazione contro il Decreto-Legge Tajani</h2>
+                <h2>Manifestazione collettiva contro il Decreto-Legge Tajani</h2>
                 <form action="process.php" method="POST">
                     <div class="mb-3">
                         <label for="nome-it" class="form-label">Nome</label>
@@ -315,127 +316,107 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Armazena os templates das mensagens em cada idioma
-    const messageTemplates = {
-        pt: `<?php echo htmlspecialchars(strip_tags(file_get_contents('mensagem_pt.html')), ENT_QUOTES, 'UTF-8'); ?>`,
-        en: `<?php echo htmlspecialchars(strip_tags(file_get_contents('mensagem_en.html')), ENT_QUOTES, 'UTF-8'); ?>`,
-        it: `<?php echo htmlspecialchars(strip_tags(file_get_contents('mensagem_it.html')), ENT_QUOTES, 'UTF-8'); ?>`
-    };
-
-    // Função para atualizar todas as mensagens visíveis
-    function updateAllMessages() {
-        // Obtém o idioma ativo
-        const activeSection = document.querySelector('.content-section:not(.hidden)');
-        const activeLang = activeSection ? activeSection.id.split('-')[1] : 'pt';
-        
-        // Obtém os valores dos campos do formulário ativo
-        const form = activeSection.querySelector('form');
-        const nome = form.querySelector('[name="nome"]').value;
-        const email = form.querySelector('[name="email"]').value;
-        const pais = form.querySelector('[name="pais"]').value;
-
-        // Função para substituir placeholders
-        const replacePlaceholders = (template) => {
-            if (!nome || !email || !pais) return template;
-            return template
-                .replace(/\[\[Nome\]\]/g, nome)
-                .replace(/\[\[Email\]\]/g, email)
-                .replace(/\[\[nacionalidade\]\]/g, pais.toLowerCase());
+    <script>
+        // Armazena os templates das mensagens em cada idioma
+        const messageTemplates = {
+            pt: `<?php echo htmlspecialchars(strip_tags(file_get_contents('mensagem_pt.html')), ENT_QUOTES, 'UTF-8'); ?>`,
+            en: `<?php echo htmlspecialchars(strip_tags(file_get_contents('mensagem_en.html')), ENT_QUOTES, 'UTF-8'); ?>`,
+            it: `<?php echo htmlspecialchars(strip_tags(file_get_contents('mensagem_it.html')), ENT_QUOTES, 'UTF-8'); ?>`
         };
 
-        // Atualiza as mensagens em todos os idiomas
-        if (document.getElementById('mensagem1')) {
-            document.getElementById('mensagem1').value = replacePlaceholders(messageTemplates.pt);
-        }
-        if (document.getElementById('mensagem1-en')) {
-            document.getElementById('mensagem1-en').value = replacePlaceholders(messageTemplates.en);
-        }
-        if (document.getElementById('mensagem2-en')) {
-            document.getElementById('mensagem2-en').value = replacePlaceholders(messageTemplates.it);
-        }
-        if (document.getElementById('mensagem1-it')) {
-            document.getElementById('mensagem1-it').value = replacePlaceholders(messageTemplates.it);
-        }
-    }
+        // Função para atualizar todas as mensagens visíveis
+        function updateAllMessages() {
+            // Obtém o idioma ativo
+            const activeSection = document.querySelector('.content-section:not(.hidden)');
+            const activeLang = activeSection ? activeSection.id.split('-')[1] : 'pt';
 
-    // Configura os event listeners para os campos de formulário
-    function setupFormListeners() {
-        // Listener genérico para qualquer input ou select em qualquer formulário
-        document.addEventListener('input', function(e) {
-            if (e.target.matches('input, select')) {
-                updateAllMessages();
-            }
-        });
+            // Obtém os valores dos campos do formulário ativo
+            const form = activeSection.querySelector('form');
+            const nome = form.querySelector('[name="nome"]').value;
+            const email = form.querySelector('[name="email"]').value;
+            const pais = form.querySelector('[name="pais"]').value;
+            const dataAtual = new Date().toLocaleDateString('pt-BR'); // Formato DD/MM/AAAA
 
-        // Listener específico para o select de país
-        document.addEventListener('change', function(e) {
-            if (e.target.matches('select[name="pais"]')) {
-                updateAllMessages();
-            }
-        });
-    }
+            // Função para substituir placeholders
+            const replacePlaceholders = (template) => {
+                let mensagem = template;
+                if (nome) mensagem = mensagem.replace(/\[\[Nome\]\]/g, nome);
+                if (email) mensagem = mensagem.replace(/\[\[Email\]\]/g, email);
+                if (pais) mensagem = mensagem.replace(/\[\[nacionalidade\]\]/g, pais.toLowerCase());
+                mensagem = mensagem.replace(/\[\[Data\]\]/g, dataAtual);
+                return mensagem;
+            };
 
-    // Função para trocar de idioma
-    function changeLanguage(lang) {
-        // Oculta todas as seções de conteúdo
-        document.querySelectorAll('.content-section').forEach(section => {
-            section.classList.add('hidden');
-        });
-        
-        // Mostra a seção do idioma selecionado
-        document.getElementById(`content-${lang}`).classList.remove('hidden');
-        
-        // Atualiza o texto do botão de idioma
-        document.getElementById('current-language').textContent = 
-            lang === 'pt' ? 'Português' : 
-            lang === 'en' ? 'English' : 'Italiano';
-        
-        // Atualiza o título da página
-        document.title = 
-            lang === 'pt' ? 'Manifestação ao Decreto-Lei Tajani' : 
-            lang === 'en' ? 'Collective Manifesto Against the Tajani Decree-Law' : 
-            'Manifestazione Collettiva contro il Decreto-Legge Tajani';
-        
-        // Força a atualização das mensagens
-        updateAllMessages();
-    }
-
-    // Inicialização quando o DOM estiver pronto
-    document.addEventListener('DOMContentLoaded', function() {
-        // Configura os listeners dos formulários
-        setupFormListeners();
-        
-        // Configura o dropdown de idiomas
-        document.querySelectorAll('.dropdown-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const lang = this.getAttribute('data-lang');
-                changeLanguage(lang);
+            // Atualiza todas as áreas de mensagem visíveis
+            document.querySelectorAll('textarea[id^="mensagem"]').forEach(textarea => {
+                const lang = textarea.id.split('-')[1] || textarea.id.replace('mensagem', '');
+                const template = messageTemplates[lang] || messageTemplates.pt;
+                textarea.value = replacePlaceholders(template);
             });
-        });
-        
-        // Verificação de campos antes do envio
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                const nome = form.querySelector('[name="nome"]').value.trim();
-                const email = form.querySelector('[name="email"]').value.trim();
-                
-                if (!nome || !email) {
-                    e.preventDefault();
-                    alert(
-                        form.querySelector('[name="language"]').value === 'pt' ? 'Por favor, preencha todos os campos obrigatórios!' :
-                        form.querySelector('[name="language"]').value === 'en' ? 'Please fill in all required fields!' :
-                        'Si prega di compilare tutti i campi obbligatori!'
-                    );
+        }
+
+        // Configura os event listeners para os campos de formulário
+        function setupFormListeners() {
+            document.addEventListener('input', function(e) {
+                if (e.target.matches('input, select')) {
+                    updateAllMessages();
                 }
             });
+
+            document.addEventListener('change', function(e) {
+                if (e.target.matches('select[name="pais"]')) {
+                    updateAllMessages();
+                }
+            });
+        }
+
+        // Função para trocar de idioma
+        function changeLanguage(lang) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(`content-${lang}`).classList.remove('hidden');
+            document.getElementById('current-language').textContent =
+                lang === 'pt' ? 'Português' :
+                lang === 'en' ? 'English' : 'Italiano';
+
+            document.title =
+                lang === 'pt' ? 'Manifestação ao Decreto-Lei Tajani' :
+                lang === 'en' ? 'Collective Manifesto Against the Tajani Decree-Law' :
+                'Manifestazione Collettiva contro il Decreto-Legge Tajani';
+
+            updateAllMessages();
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            setupFormListeners();
+            updateAllMessages();
+
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    changeLanguage(this.getAttribute('data-lang'));
+                });
+            });
+
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const nome = form.querySelector('[name="nome"]').value.trim();
+                    const email = form.querySelector('[name="email"]').value.trim();
+
+                    if (!nome || !email) {
+                        e.preventDefault();
+                        alert(
+                            form.querySelector('[name="language"]').value === 'pt' ? 'Por favor, preencha todos os campos obrigatórios!' :
+                            form.querySelector('[name="language"]').value === 'en' ? 'Please fill in all required fields!' :
+                            'Si prega di compilare tutti i campi obbligatori!'
+                        );
+                    }
+                });
+            });
         });
-        
-        // Atualiza as mensagens inicialmente
-        updateAllMessages();
-    });
-</script>
+    </script>
 
 </body>
 

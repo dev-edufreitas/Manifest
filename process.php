@@ -6,60 +6,83 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 require 'vendor/autoload.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email_remetente = $_POST['email'];
-    $nome_remetente = $_POST['nome'];
-
-    // Carrega a planilha de e-mails
-    $arquivoExcel = 'emails.xlsx';
-    $spreadsheet  = IOFactory::load($arquivoExcel);
-    $sheet        = $spreadsheet->getActiveSheet();
+    // Dados do formulário
+    $nome = htmlspecialchars($_POST['nome'], ENT_QUOTES, 'UTF-8');
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $pais = htmlspecialchars($_POST['pais'], ENT_QUOTES, 'UTF-8');
     
-    // Obtém os e-mails da coluna correta
-    $emails = [];
-    foreach ($sheet->getColumnIterator('A') as $column) {
-        foreach ($column->getCellIterator() as $cell) {
-            $email = $cell->getValue();
-            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emails[] = $email;
+    // Carrega os e-mails da planilha
+    try {
+        $spreadsheet = IOFactory::load('emails.xlsx');
+        $sheet = $spreadsheet->getActiveSheet();
+        $emails = [];
+
+        foreach ($sheet->getRowIterator() as $row) {
+            $cell = $sheet->getCell('C' . $row->getRowIndex());
+            if (filter_var($cell->getValue(), FILTER_VALIDATE_EMAIL)) {
+                $emails[] = $cell->getValue();
             }
         }
+
+    } catch (Exception $e) {
+        die("Erro ao carregar a planilha: " . $e->getMessage());
     }
 
     if (empty($emails)) {
         die("Nenhum e-mail válido encontrado na planilha.");
     }
 
-    // Configuração do e-mail
-    $assunto = "Mensagem Automática";
-    $mensagem = "Olá, este é um e-mail enviado automaticamente.";
-
+    // Configuração do PHPMailer
     $mail = new PHPMailer(true);
     try {
+        // Configurações do servidor SMTP
         $mail->isSMTP();
-        $mail->Host = 'smtp.seudominio.com'; // Configure seu servidor SMTP
+        $mail->Host = 'smtp.gmail.com'; 
         $mail->SMTPAuth = true;
-        $mail->Username = $email_remetente;
-        $mail->Password = 'senha_do_email'; // Pode ser um app password
+        $mail->Username = 'siamo.italiani.it.manifest@gmail.com'; // Nome de usuário SMTP 
+        $mail->Password = 'brployiwrdzrcgmp'; // Senha SMTP
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
+        $mail->CharSet = 'UTF-8';
 
+        // Remetente
+        $mail->setFrom($email, $nome);
+        $mail->addReplyTo($email, $nome);
+
+        // Assunto FIXO em italiano
+        $mail->Subject = 'Manifestazione collettiva contro il Decreto-Legge Tajani';
+
+        // Carrega template em italiano e substitui placeholders
+        $mensagem_it = file_get_contents('mensagem_it.html');
+        $mensagem_it = str_replace(
+            ['[[Nome]]', '[[Email]]', '[[nacionalidade]]', '[[Data]]'],
+            [$nome, $email, strtolower($pais), date('d/m/Y')],
+            $mensagem_it
+        );
+        
         $mail->isHTML(true);
-        $mail->Subject = $assunto;
-        $mail->Body = $mensagem;
+        $mail->Body = $mensagem_it;
+        $mail->AltBody = strip_tags($mensagem_it);
 
-        foreach ($emails as $email_destino) {
-            $mail->clearAddresses();
-            $mail->setFrom($email_remetente, $nome_remetente);
-            $mail->addAddress($email_destino);
-            var_dump($email_destino);
-        //     if (!$mail->send()) {
-        //         echo "Erro ao enviar para $email_destino: " . $mail->ErrorInfo . "<br>";
-        //     } else {
-        //         echo "E-mail enviado para $email_destino!<br>";
-        //     }
+        // Envia para todos os e-mails da lista
+        foreach ($emails as $destinatario) {
+            try {
+                $mail->clearAddresses();
+                $mail->addAddress($destinatario);
+                $mail->send();
+                echo "E-mail enviado para: $destinatario<br>";
+            } catch (Exception $e) {
+                echo "Falha no envio para $destinatario: " . $mail->ErrorInfo . "<br>";
+            }
         }
+
+        echo "<h3>Todos os e-mails foram processados!</h3>";
+
     } catch (Exception $e) {
-        echo "Erro ao enviar e-mails: {$mail->ErrorInfo}";
+        die("Erro no envio: {$mail->ErrorInfo}");
     }
+} else {
+    header("Location: index.php");
+    exit();
 }
 ?>
