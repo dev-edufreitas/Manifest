@@ -1,3 +1,9 @@
+<?php
+$variavel = 'sim';
+
+if ($variavel === 'sim') {
+  ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -231,16 +237,16 @@
                         <div class="col-md-6">
                             <label for="mensagem1-en" class="form-label">English</label>
                             <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem1-en" name="mensagem1-en" rows="4" required readonly><?php
-                                                                                                                                                                $mensagem_en = file_get_contents('mensagem_en.html');
-                                                                                                                                                                echo htmlspecialchars(strip_tags($mensagem_en), ENT_QUOTES, 'UTF-8');
-                                                                                                                                                                ?></textarea>
+                                                                                                                                                                    $mensagem_en = file_get_contents('mensagem_en.html');
+                                                                                                                                                                    echo htmlspecialchars(strip_tags($mensagem_en), ENT_QUOTES, 'UTF-8');
+                                                                                                                                                                    ?></textarea>
                         </div>
                         <div class="col-md-6">
                             <label for="mensagem2-en" class="form-label">Italian</label>
                             <textarea style="height: 600px; resize: none;" class="form-control" id="mensagem2-it-en" name="mensagem2-it-en" rows="4" required readonly><?php
-                                                                                                                                                                    $mensagem_it = file_get_contents('mensagem_it.html');
-                                                                                                                                                                    echo htmlspecialchars(strip_tags($mensagem_it), ENT_QUOTES, 'UTF-8');
-                                                                                                                                                                    ?></textarea>
+                                                                                                                                                                        $mensagem_it = file_get_contents('mensagem_it.html');
+                                                                                                                                                                        echo htmlspecialchars(strip_tags($mensagem_it), ENT_QUOTES, 'UTF-8');
+                                                                                                                                                                        ?></textarea>
                         </div>
                     </div>
                     <input type="hidden" name="language" value="en">
@@ -437,6 +443,29 @@
             });
         }
 
+        // Função para detectar o idioma do navegador
+        function detectBrowserLanguage() {
+            // Obter o idioma do navegador
+            const browserLang = navigator.language || navigator.userLanguage;
+
+            // Converter para formato simples (ex: 'pt-BR' para 'pt')
+            const simpleLang = browserLang.split('-')[0].toLowerCase();
+
+            // Mapear para os idiomas disponíveis no site
+            let siteLang = 'pt'; // Idioma padrão
+
+            // Verificar se o idioma do navegador corresponde a um dos idiomas disponíveis
+            if (simpleLang === 'it') {
+                siteLang = 'it';
+            } else if (simpleLang === 'en') {
+                siteLang = 'en';
+            } else if (simpleLang === 'pt') {
+                siteLang = 'pt';
+            }
+
+            return siteLang;
+        }
+
         // Função para trocar de idioma
         function changeLanguage(lang) {
             document.querySelectorAll('.content-section').forEach(section => {
@@ -460,6 +489,10 @@
             setupFormListeners();
             updateAllMessages();
             setupScrollSync();
+
+            // Detectar idioma do navegador e alterar o site
+            const browserLanguage = detectBrowserLanguage();
+            changeLanguage(browserLanguage);
 
             document.querySelectorAll('.dropdown-item').forEach(item => {
                 item.addEventListener('click', function(e) {
@@ -489,3 +522,14 @@
 </body>
 
 </html>
+
+
+
+
+  <?php
+
+
+
+
+}
+?>

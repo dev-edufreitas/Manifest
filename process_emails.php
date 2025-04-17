@@ -101,43 +101,43 @@ $client = new Client([
 // Processar o próximo lote de e-mails
 $batch_end = min($state['current_index'] + $state['batch_size'], $state['total']);
 
-for ($i = $state['current_index']; $i < $batch_end; $i++) {
-    $destinatario = $state['emails'][$i];
-    
-    try {
-        $emailData = [
-            'from' => 'Manifestação Cidadania <contato@siamoitaliani.org>', // Para testes iniciais
-            'reply_to' => $email,
-            'to' => $destinatario,
-            'subject' => $subject,
-            'html' => $mensagem_it
-        ];
-        
-        $response = $client->post('/emails', [
-            'json' => $emailData
-        ]);
-        
-        $statusCode = $response->getStatusCode();
-        $responseData = json_decode($response->getBody()->getContents());
-        
-        if ($statusCode == 200 && isset($responseData->id)) {
-            $state['sent']++;
-        } else {
-            $state['failed']++;
-        }
-    } catch (RequestException $e) {
-  
-        $state['failed']++;
-    } catch (Exception $e) {
-        $state['failed']++;
+
+$batchEmails = array_slice($state['emails'], $state['current_index'], $state['batch_size']);
+
+$to = array_shift($batchEmails); // pega o primeiro como "to"
+$bcc = $batchEmails; // o resto como bcc
+
+try {
+    $emailData = [
+        'from' => 'Manifestação Cidadania <contato@siamoitaliani.org>',
+        'reply_to' => $email,
+        'to' => $to,
+        'bcc' => $bcc,
+        'subject' => $subject,
+        'html' => $mensagem_it
+    ];
+
+    $response = $client->post('/emails', [
+        'json' => $emailData
+    ]);
+
+    $statusCode = $response->getStatusCode();
+    $responseData = json_decode($response->getBody()->getContents());
+
+    if ($statusCode == 200 && isset($responseData->id)) {
+        $state['sent'] += count($bcc) + 1;
+    } else {
+        $state['failed'] += count($bcc) + 1;
     }
-    
-    // Pequena pausa para não sobrecarregar a API
-    usleep(100000); // 100ms
+} catch (RequestException $e) {
+    $state['failed'] += count($bcc) + 1;
+} catch (Exception $e) {
+    $state['failed'] += count($bcc) + 1;
 }
 
-// Atualizar o índice atual
-$state['current_index'] = $batch_end;
+// Pequena pausa para não sobrecarregar a API
+usleep(300000); // 100ms
+
 
 // Verificar se completou
 if ($state['current_index'] >= $state['total']) {
